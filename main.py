@@ -48,8 +48,11 @@ def main() -> None:
     with open(path, "r", encoding="utf-8") as f:
         written = f.read()
     assert written == joke, "read-back differs from the joke"
+    assert written == CANDIDATES[SELECTED], "read-back differs from the selected joke"
     assert 1 <= len(written) <= 200, "entry must be 1 to 200 characters"
     assert written.strip(), "entry must not be only whitespace"
+    assert "\n" not in written, "read-back must be a single line"
+    assert not written.endswith("\n"), "read-back must not end with a newline"
     print(joke)
 
 
